@@ -1,13 +1,16 @@
 import { Player } from "./player.js";
+import { Enemy } from "./enemy.js";
 
 const board = document.getElementById('board');
 let mosquito = new Player(0, 200, board);
 
+let enemyMoveId;
 let playerMoveId;
 
 function start(){
     mosquito.createMosquito();
     playerMoveId = setInterval(playerMove, 50);
+    enemyMoveId = setInterval(createEnemy, 2000)
 }
 
 
@@ -15,6 +18,14 @@ function playerMove() {
     mosquito.move();
 }
 
+function createEnemy(){
+   
+    let randomY = Math.floor(Math.random() * 5) * 50
+    let enemy = new Enemy(950, randomY, board);
+    enemy.insertFlySwatter()
+     
+    
+}
 
 
 window.addEventListener('keydown', function(e) {
